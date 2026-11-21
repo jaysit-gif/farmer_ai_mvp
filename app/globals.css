@@ -3,25 +3,74 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --bg: #f4f1e8;
+  --bg-elevated: #fffdf8;
+  --text: #1c1914;
+  --text-muted: #4e463c;
+  --border: #e0d5c3;
+  --accent: #234d22;
+  --accent-fg: #f6f3ea;
+  --accent-soft: #e4f0dc;
+  --accent-hover: #1b3e1a;
+  --wheat: #7a4e12;
+  --ring: #234d22;
+  --glow: rgba(35, 77, 34, 0.14);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  color-scheme: dark;
+  --bg: #101512;
+  --bg-elevated: #1a221c;
+  --text: #f6f2e8;
+  --text-muted: #d5ccc0;
+  --border: #334036;
+  --accent: #c6e3b4;
+  --accent-fg: #132112;
+  --accent-soft: #243228;
+  --accent-hover: #d7eec8;
+  --wheat: #f0d7a1;
+  --ring: #c6e3b4;
+  --glow: rgba(198, 227, 180, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image: radial-gradient(
+    ellipse 90% 42% at 50% -12%,
+    var(--glow),
+    transparent 62%
+  );
+  color: var(--text);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+[id] {
+  scroll-margin-top: 12rem;
+}
+
+@media (min-width: 640px) {
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
